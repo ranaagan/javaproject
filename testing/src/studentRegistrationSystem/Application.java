@@ -19,13 +19,16 @@ public class Application {
 			System.out.println("Enter password:");
 			String pass = input.next();
 			
-			if (Authenticate.authenticateUser(connection, uName, pass)) {
-				System.out.println("Welcome, what would you like to do? \n (1)Register for a class \n (2)View my Classes \n (3)Drop existing class");
+			if (Session.authenticateUser(connection, uName, pass)) {
+				Student currentStudent = new Student();
+				Session.setSessionFields(connection, uName, currentStudent);
+				System.out.println("Welcome " +currentStudent.getfName()+", what would you like to do? \n (1)Register for a class \n (2)View my Classes \n (3)Drop existing class");
 			int selection = input.nextInt();
 			switch (selection) {
 			case 1: CourseRegistration.viewAllCourses(connection);
 			System.out.println("Enter the ID of the course you would like to add:");
 			int courseSelection = input.nextInt();
+			CourseRegistration.addCourse(connection, currentStudent, courseSelection);
 			break;
 			case 2: System.out.println();
 			break;

@@ -24,7 +24,7 @@ public class AccessConnectivity {
 		
 		try {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\raagan\\Desktop\\Java Project\\Database11.accdb");
+			Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\raagan\\Desktop\\Java Project\\Database1.accdb");
 			String sql = "INSERT INTO email_app (first_name, last_name, company, email_address, password) VALUES (?, ?, ?, ?, ?)";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);

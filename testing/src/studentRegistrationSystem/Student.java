@@ -57,6 +57,11 @@ public class Student {
 		return password;
 	}
 	
+	//used when storing password from database to Student object
+	public void setPassword(String pass) {
+		this.password=pass;
+		
+	}
 	
 
 }

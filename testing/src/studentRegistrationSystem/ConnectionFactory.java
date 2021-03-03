@@ -8,7 +8,7 @@ public class ConnectionFactory {
 	  public static Connection getConnection(){
 	      try {
 	    	  Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-	          Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\raagan\\Desktop\\Java Project\\Database11.accdb");
+	          Connection connection = DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\raagan\\Desktop\\Java Project\\Database1.accdb");
 	          return connection;
 	      } catch (Exception ex) {
 	          throw new RuntimeException("Error connecting to the database", ex);
