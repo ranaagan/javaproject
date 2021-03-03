@@ -30,7 +30,7 @@ public class Application {
 			int courseSelection = input.nextInt();
 			CourseRegistration.addCourse(connection, currentStudent, courseSelection);
 			break;
-			case 2: System.out.println();
+			case 2: CourseRegistration.viewMyCourses(connection, currentStudent);
 			break;
 			case 3: System.out.println();
 			break;
