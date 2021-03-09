@@ -24,18 +24,31 @@ public class Application {
 				Session.setSessionFields(connection, uName, currentStudent);
 				System.out.println("Welcome " +currentStudent.getfName()+", what would you like to do? \n (1)Register for a class \n (2)View my Classes \n (3)Drop existing class");
 			int selection = input.nextInt();
+			
 			switch (selection) {
-			case 1: CourseRegistration.viewAllCourses(connection);
-			System.out.println("Enter the ID of the course you would like to add:");
-			int courseSelection = input.nextInt();
-			CourseRegistration.addCourse(connection, currentStudent, courseSelection);
-			break;
-			case 2: CourseRegistration.viewMyCourses(connection, currentStudent);
-			break;
-			case 3: System.out.println();
-			break;
-			default:
-				System.out.println("Invalid input");
+				
+				case 1: CourseRegistration.viewAllCourses(connection);
+						System.out.println("Enter the IDs of the courses you would like to add: (Type 0 to quit)");
+				
+						int courseSelection = input.nextInt();
+						while(courseSelection != 0) {
+						CourseRegistration.addCourse(connection, currentStudent, courseSelection);
+						System.out.println("Next:");
+						courseSelection = input.nextInt();
+						}
+						break;
+			
+				case 2: CourseRegistration.viewMyCourses(connection, currentStudent);
+						break;
+			
+				case 3: System.out.println("Enter the ID of the course you would like to delete.");
+						CourseRegistration.viewMyCourses(connection, currentStudent);
+						int deletedCourse = input.nextInt();
+						CourseRegistration.deleteCourse(connection, currentStudent, deletedCourse);
+						break;
+			
+				default:
+						System.out.println("Invalid input");
 			}
 			
 			}
