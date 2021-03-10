@@ -57,7 +57,7 @@ public class Application {
 				default:
 						System.out.println("Invalid input");
 			}
-			System.out.println("Want to return to Main Menu? (Type yes or no)");
+			System.out.println("Want to return to Main Menu? (Type yes or no to logout)");
 			mainMenu = input.next();
 			
 			}
