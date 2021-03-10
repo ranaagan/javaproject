@@ -19,13 +19,9 @@ public class Register {
 		preparedStatement.setString(2, x.getlName());
 		preparedStatement.setString(3, x.geteMail());
 		preparedStatement.setString(4, x.getPassword());
-		System.out.println("success");
-		int row = preparedStatement.executeUpdate();
-		  
-		if (row > 0) { System.out.println("A row has been inserted successfully."); }
-		  
 		
-		
+		preparedStatement.executeUpdate();
+		  		
 	}
 
 }

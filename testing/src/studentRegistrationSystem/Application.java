@@ -27,9 +27,9 @@ public class Application {
 			
 			switch (selection) {
 				
-				case 1: CourseRegistration.viewAllCourses(connection);
-						System.out.println("Enter the IDs of the courses you would like to add: (Type 0 to quit)");
-				
+				case 1: 
+						System.out.println("Enter the ID of the course you would like to add from below: (Type 0 to quit)");
+						CourseRegistration.viewAllCourses(connection);
 						int courseSelection = input.nextInt();
 						while(courseSelection != 0) {
 						CourseRegistration.addCourse(connection, currentStudent, courseSelection);
@@ -41,10 +41,14 @@ public class Application {
 				case 2: CourseRegistration.viewMyCourses(connection, currentStudent);
 						break;
 			
-				case 3: System.out.println("Enter the ID of the course you would like to delete.");
+				case 3: System.out.println("Enter the IDs of the courses you would like to delete: (Type 0 to quit)");
 						CourseRegistration.viewMyCourses(connection, currentStudent);
 						int deletedCourse = input.nextInt();
+						while(deletedCourse !=0) {
 						CourseRegistration.deleteCourse(connection, currentStudent, deletedCourse);
+						System.out.println("Next:");
+						deletedCourse = input.nextInt();
+						}
 						break;
 			
 				default:
@@ -59,6 +63,7 @@ public class Application {
 			String last = input.next();
 			Student student = new Student(first, last);
 			Register.registerUser(connection, student);
+			System.out.println("Registration Successful. Your password is: "+student.getPassword());
 		}
 	}
 }
