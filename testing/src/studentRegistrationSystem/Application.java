@@ -22,7 +22,10 @@ public class Application {
 			if (Session.authenticateUser(connection, uName, pass)) {
 				Student currentStudent = new Student();
 				Session.setSessionFields(connection, uName, currentStudent);
-				System.out.println("Welcome " +currentStudent.getfName()+", what would you like to do? \n (1)Register for a class \n (2)View my Classes \n (3)Drop existing class");
+				
+			String mainMenu = "yes";
+			while (mainMenu.equals("yes")){
+			System.out.println("Welcome " +currentStudent.getfName()+", what would you like to do? \n (1)Register for a class \n (2)View my Classes \n (3)Drop existing class");
 			int selection = input.nextInt();
 			
 			switch (selection) {
@@ -54,7 +57,10 @@ public class Application {
 				default:
 						System.out.println("Invalid input");
 			}
+			System.out.println("Want to return to Main Menu? (Type yes or no)");
+			mainMenu = input.next();
 			
+			}
 			}
 			else System.out.println("Invalid Credentials");
 		}
