@@ -12,7 +12,7 @@ public class Application {
 	public static void main(String[] args) throws Exception {
 		
 		Scanner input = new Scanner(System.in);	
-		System.out.println("Enter 0 to login, 1 to register:");
+		System.out.println("Enter 0 to login or 1 to register:");
 		if (input.nextInt()==0) {
 			System.out.println("Enter username:");
 			String uName = input.next();
