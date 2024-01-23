@@ -1,4 +1,4 @@
-package studentRegistrationSystem;
+package Models;
 
 public class Student {
 	private static int count = 0;

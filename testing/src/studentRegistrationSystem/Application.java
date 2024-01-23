@@ -1,10 +1,17 @@
 package studentRegistrationSystem;
-import java.sql.Connection;
+import java
+.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+
+import Models.Student;
+import Utilities.ConnectionFactory;
+import Utilities.CourseRegistration;
+import Utilities.Register;
+import Utilities.Session;
 
 public class Application {
 

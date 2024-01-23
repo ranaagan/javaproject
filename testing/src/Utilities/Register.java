@@ -1,10 +1,10 @@
-package studentRegistrationSystem;
+package Utilities;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import studentRegistrationSystem.Student;
+import Models.Student;
 
 import java.sql.Connection;
 

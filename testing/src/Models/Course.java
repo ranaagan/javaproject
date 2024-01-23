@@ -1,4 +1,4 @@
-package studentRegistrationSystem;
+package Models;
 
 public class Course {
 	
