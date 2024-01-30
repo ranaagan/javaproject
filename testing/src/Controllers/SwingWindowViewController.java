@@ -5,12 +5,15 @@ import java.sql.SQLException;
 
 import Models.Student;
 import Utilities.ConnectionFactory;
+import Utilities.Register;
 import Utilities.Session;
 import Views.SwingWindow;
 
 public class SwingWindowViewController {
 	String username;
 	String password;
+	String firstName;
+	String lastName;
 	static Connection connection = ConnectionFactory.getConnection();
 
 	
@@ -31,7 +34,7 @@ public class SwingWindowViewController {
 			e1.printStackTrace();
 		}
 	}
-	
+	//why do we need this below method and cant call authenticate above directly from the SwignWindow instead? seems repetivit?
 	public void receiveStudentInfo(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -39,5 +42,24 @@ public class SwingWindowViewController {
 	
 		
 	}
+	
+	public void registerStudent(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		Student currentStudent = new Student(firstName, lastName);
+		try {
+			Register.registerUser(connection, currentStudent);
+			this.password = currentStudent.getPassword();
+			
+		}catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+	
+	public String getPassword() {
+		return password;
 
-}
+	}
+	}
+
+

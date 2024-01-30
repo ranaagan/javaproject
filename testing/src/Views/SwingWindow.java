@@ -19,6 +19,8 @@ public class SwingWindow {
 
 	String userName;
 	String password;
+	String firstName;
+	String lastName;
 	public SwingWindowViewController controller;
 	
 	public String getuserName() {
@@ -33,11 +35,11 @@ public class SwingWindow {
 		
 	}
 	
-	
 	//public static void main(String[] args) {
 		public void createWindow() {
 		JFrame j = new JFrame("GSU");
-		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);j.setSize(600, 400);
+		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		j.setSize(600, 400);
 		j.setLocationRelativeTo(null);
 		j.setLayout(new FlowLayout());
 		
@@ -61,7 +63,7 @@ public class SwingWindow {
 		j.add(login);
 		j.setVisible(true);
 		
-		login.addActionListener(new ActionListener(){
+			login.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e) {
 				userName = t.getText();
@@ -72,7 +74,33 @@ public class SwingWindow {
 			
 		});		
 		
+		JLabel l3 = new JLabel("First Name");
+		j.add(l3);
+		JTextField t2 = new JTextField(20);
+		j.add(t2);
 		
+		JLabel l4 = new JLabel("Last Name");
+		j.add(l4);
+		JTextField t3 = new JTextField(20);
+		j.add(t3);
+			
+		JButton register = new JButton("Register New User");
+		j.add(register);
+		j.setVisible(true);
+		JLabel success = new JLabel("You are successfully registered. Your password is: " );
+
+		
+			register.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				firstName = t2.getText();
+				lastName = t3.getText();
+				controller.registerStudent(firstName, lastName);
+				JOptionPane.showMessageDialog(null, "Success, your password is: " + controller.getPassword() );
+			}
+
+			
+		});
 		
 		}
 	//}
