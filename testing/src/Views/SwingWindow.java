@@ -137,7 +137,10 @@ public class SwingWindow {
 		});
 		
 		//Welcome Page
-		JLabel welcome = new JLabel("Welcome");
+		JLabel welcome = new JLabel("Welcome, ");
+		welcomePage.add(welcome);
+		
+		
 		j.add(container);
 		j.setVisible(true);
 		
