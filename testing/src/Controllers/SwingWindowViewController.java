@@ -39,8 +39,7 @@ public class SwingWindowViewController {
 		this.username = username;
 		this.password = password;
 		authenticate(username, password);
-	
-		
+			
 	}
 	
 	public void registerStudent(String firstName, String lastName) {
