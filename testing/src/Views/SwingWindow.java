@@ -24,6 +24,14 @@ public class SwingWindow {
 	public JPasswordField passWordField;
 	public JButton loginButton;
 	public JButton registerNewButton;
+	
+	JLabel registrationFirstNameLabel;
+	public JTextField registrationFirstNameTextField;
+	JLabel registrationLastNameLabel;
+	public JTextField registrationLastNameTextField;
+	JButton register;
+	
+
 	String userName;
 	String password;
 	String firstName;
@@ -102,25 +110,25 @@ public class SwingWindow {
 			});
 
 		// Registration as new Screen
-		JLabel l3 = new JLabel("First Name");
-		registerPanel.add(l3);
-		JTextField t2 = new JTextField(20);
-		registerPanel.add(t2);
+		registrationFirstNameLabel = new JLabel("First Name");
+		registerPanel.add(registrationFirstNameLabel);
+		registrationFirstNameTextField = new JTextField(20);
+		registerPanel.add(registrationFirstNameTextField);
 		
-		JLabel l4 = new JLabel("Last Name");
-		registerPanel.add(l4);
-		JTextField t3 = new JTextField(20);
-		registerPanel.add(t3);
+		registrationLastNameLabel = new JLabel("Last Name");
+		registerPanel.add(registrationLastNameLabel);
+		registrationLastNameTextField = new JTextField(20);
+		registerPanel.add(registrationLastNameTextField);
 			
-		JButton register = new JButton("Register New User");
+		register = new JButton("Register New User");
 		registerPanel.add(register);
 				JLabel success = new JLabel("You are successfully registered. Your password is: " );
 				
 			register.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e) {
-				firstName = t2.getText();
-				lastName = t3.getText();
+				firstName = registrationFirstNameTextField.getText();
+				lastName = registrationLastNameTextField.getText();
 				
 			}
 
