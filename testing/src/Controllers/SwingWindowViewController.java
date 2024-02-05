@@ -1,7 +1,11 @@
 package Controllers;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import javax.swing.*;
 
 import Models.Student;
 import Utilities.ConnectionFactory;
@@ -15,14 +19,42 @@ public class SwingWindowViewController {
 	String firstName;
 	String lastName;
 	static Connection connection = ConnectionFactory.getConnection();
-
+	JTextField userNameTextField;
+	JPasswordField passWordField;
+	JButton loginButton;
+	JButton registerButton;
 	
-	public void createGUI() {
-		SwingWindow window = new SwingWindow();
-		window.setController(this);
+	Student currentStudent;
+	
+	public SwingWindowViewController(SwingWindow window) {
 		window.createWindow();
+		userNameTextField = window.userNameTextField;
+		passWordField = window.passWordField;
+		loginButton = window.loginButton;
+		registerButton = window.registerNewButton;
+		currentStudent = new Student();
+		
 	}
-	public void authenticate(String userName, String password) {
+	
+	public void loginHandler() {
+		loginButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				currentStudent.setEmail(userNameTextField.getText());
+				currentStudent.setPassword(new String(passWordField.getPassword()));
+				
+				
+			//	cl.show(container, "3");
+			}
+
+		});		
+
+		
+	}
+	
+		
+	
+	/*public void authenticate(String userName, String password) {
 		try {
 			if (Session.authenticateUser(connection, userName, password)) {
 				Student currentStudent = new Student();
@@ -34,7 +66,7 @@ public class SwingWindowViewController {
 			e1.printStackTrace();
 		}
 	}
-	//why do we need this below method and cant call authenticate above directly from the SwignWindow instead? seems repetivit?
+	//why do we need this below method and cant call authenticate above directly from the SwignWindow instead? seems repetitive?
 	public void receiveStudentInfo(String username, String password) {
 		this.username = username;
 		this.password = password;
@@ -53,12 +85,9 @@ public class SwingWindowViewController {
 		}catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-		}
+		}*/
+}
 	
-	public String getPassword() {
-		return password;
-
-	}
-	}
+	
 
 

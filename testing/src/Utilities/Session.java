@@ -26,9 +26,9 @@ public class Session {
 		ResultSet result = stmt.executeQuery();
 		while (result.next()) { 
 			  student.setID(result.getInt("ID")); 
-			  student.setfName(result.getString("first_name"));
-			  student.setlName(result.getString("last_name"));
-			  student.seteMail(result.getString("email_address"));
+			  student.setFirstName(result.getString("first_name"));
+			  student.setlastName(result.getString("last_name"));
+			  student.setEmail(result.getString("email_address"));
 			  student.setPassword(result.getString("password"));
 		}
 		

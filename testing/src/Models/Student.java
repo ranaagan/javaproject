@@ -3,20 +3,20 @@ package Models;
 public class Student {
 	private static int count = 0;
 	private int ID;
-	private String fName;
-	private String lName;
-	private String eMail;
+	private String firstName;
+	private String lastName;
+	private String email;
 	private String password="";
 	
 	public Student() {
 	}
 	
-	public Student(String fName, String lName) {
+	public Student(String firstName, String lastName) {
 		ID = ++count;
-		this.fName = fName;
-		this.lName = lName;
-		this.eMail = fName+"."+lName+"@gsu.edu";
-		this.password = setPassword();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = firstName+"."+lastName+"@gsu.edu";
+		this.password = createPassword();
 		
 	}
 	
@@ -28,28 +28,38 @@ public class Student {
 		this.ID = ID;
 	}
 
-	public String getfName() {
-		return fName;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setfName(String fName) {
-		this.fName = fName;
+	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getlName() {
-		return lName;
+	
+	public String getlastName() {
+		return lastName;
 	}
-	public void setlName(String lName) {
-		this.lName = lName;
+	
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public String geteMail() {
-		return eMail;
+	
+	public String getEmail() {
+		return email;
 	}
-	public void seteMail(String eMail) {
-		this.eMail = eMail;
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
-	public String setPassword() {
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String createPassword() {
 		String source = "abcdefghijklmnopqrstuvwxyz0123456789";
 		for (int i =0; i< 8;i++) {
 			password = ""+password+source.charAt((int)(Math.random()*36));
@@ -57,11 +67,6 @@ public class Student {
 		return password;
 	}
 	
-	//used when storing password from database to Student object
-	public void setPassword(String pass) {
-		this.password=pass;
-		
-	}
-	
+
 
 }

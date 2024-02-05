@@ -18,6 +18,12 @@ import java.sql.Statement;
 
 public class SwingWindow {
 
+	JLabel userNameLabel;
+	public JTextField userNameTextField;
+	JLabel passWordLabel;
+	public JPasswordField passWordField;
+	public JButton loginButton;
+	public JButton registerNewButton;
 	String userName;
 	String password;
 	String firstName;
@@ -33,10 +39,7 @@ public class SwingWindow {
 		return password;
 	}
 	
-	public void setController(SwingWindowViewController controller) {
-		this.controller = controller;
-		
-	}
+
 	
 	public void createWindow() {
 		JFrame j = new JFrame("Georgia State University");
@@ -64,34 +67,34 @@ public class SwingWindow {
 		cl.show(container, "1");
 		
 		//Login Screen
-		JLabel l1 = new JLabel("Username");
-		loginPanel.add(l1);
-		JTextField t = new JTextField(20);
-		loginPanel.add(t);
+		userNameLabel = new JLabel("Username");
+		loginPanel.add(userNameLabel);
+		userNameTextField = new JTextField(20);
+		loginPanel.add(userNameTextField);
 			
-		JLabel l2 = new JLabel("Password");
-		loginPanel.add(l2);
-		JPasswordField p1 = new JPasswordField(20);
-		loginPanel.add(p1);
+		passWordLabel = new JLabel("Password");
+		loginPanel.add(passWordLabel);
+		passWordField = new JPasswordField(20);
+		loginPanel.add(passWordField);
 		
-		JButton login = new JButton("Login");
-		loginPanel.add(login);
+		loginButton = new JButton("Login");
+		loginPanel.add(loginButton);
 				
-			login.addActionListener(new ActionListener(){
+		loginButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e) {
-				userName = t.getText();
-				password = new String(p1.getPassword());
-				controller.receiveStudentInfo(userName, password);
+				userName = userNameTextField.getText();
+				password = new String(passWordField.getPassword());
+				
 				cl.show(container, "3");
 			}
 
 		});		
 			
-		JButton registerNew = new JButton("Register as a New User");
-		loginPanel.add(registerNew);
+		registerNewButton = new JButton("Register as a New User");
+		loginPanel.add(registerNewButton);
 		
-			registerNew.addActionListener(new ActionListener() {
+			registerNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cl.show(container, "2");
@@ -118,8 +121,6 @@ public class SwingWindow {
 			public void actionPerformed (ActionEvent e) {
 				firstName = t2.getText();
 				lastName = t3.getText();
-				controller.registerStudent(firstName, lastName);
-				JOptionPane.showMessageDialog(null, "Success, your password is: " + controller.getPassword() );
 				
 			}
 
