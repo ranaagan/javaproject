@@ -23,32 +23,21 @@ public class SwingWindow {
 	JLabel passWordLabel;
 	public JPasswordField passWordField;
 	public JButton loginButton;
-	public JButton registerNewButton;
+	public JButton goToRegistrationPageButton;
 	
 	JLabel registrationFirstNameLabel;
 	public JTextField registrationFirstNameTextField;
 	JLabel registrationLastNameLabel;
 	public JTextField registrationLastNameTextField;
-	JButton register;
+	public JButton registerButton;
+	public JButton backToLogin;
 	
+	public JPanel container = new JPanel();
+	public JPanel loginPanel = new JPanel();
+	public JPanel registerPanel = new JPanel();
+	public JPanel welcomePage = new JPanel();
+	public CardLayout cardLayout = new CardLayout();
 
-	String userName;
-	String password;
-	String firstName;
-	String lastName;
-	
-	public SwingWindowViewController controller;
-	
-	public String getuserName() {
-		return userName;
-	}
-	
-	public String getpassword() {
-		return password;
-	}
-	
-
-	
 	public void createWindow() {
 		JFrame j = new JFrame("Georgia State University");
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,18 +50,12 @@ public class SwingWindow {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		JPanel container = new JPanel();
-		JPanel loginPanel = new JPanel();
-		JPanel registerPanel = new JPanel();
-		JPanel welcomePage = new JPanel();
-		
-		CardLayout cl = new CardLayout();
-		container.setLayout(cl);
+				
+		container.setLayout(cardLayout);
 		container.add(loginPanel, "1");
 		container.add(registerPanel, "2");
 		container.add(welcomePage, "3");
-		cl.show(container, "1");
+		cardLayout.show(container, "1");
 		
 		//Login Screen
 		userNameLabel = new JLabel("Username");
@@ -88,27 +71,11 @@ public class SwingWindow {
 		loginButton = new JButton("Login");
 		loginPanel.add(loginButton);
 			
-		//do we delete this since we have it in teh controller? or do we call loginHandler??
-		loginButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				userName = userNameTextField.getText();
-				password = new String(passWordField.getPassword());
-				
-				cl.show(container, "3");
-			}
-
-		});		
-			
-		registerNewButton = new JButton("Register as a New User");
-		loginPanel.add(registerNewButton);
+					
+		goToRegistrationPageButton = new JButton("Register as a New User");
+		loginPanel.add(goToRegistrationPageButton);
 		
-			registerNewButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cl.show(container, "2");
-			}
-			});
+		
 
 		// Registration as new Screen
 		registrationFirstNameLabel = new JLabel("First Name");
@@ -121,30 +88,12 @@ public class SwingWindow {
 		registrationLastNameTextField = new JTextField(20);
 		registerPanel.add(registrationLastNameTextField);
 			
-		register = new JButton("Register New User");
-		registerPanel.add(register);
-				JLabel success = new JLabel("You are successfully registered. Your password is: " );
-				
-			register.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				firstName = registrationFirstNameTextField.getText();
-				lastName = registrationLastNameTextField.getText();
-				
-			}
-
+		registerButton = new JButton("Register New User");
+		registerPanel.add(registerButton);
 			
-		});
-		
-		JButton backToLogin = new JButton("Back to Login");
+		backToLogin = new JButton("Back to Login");
 		registerPanel.add(backToLogin);
-		backToLogin.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed (ActionEvent e) {
-				cl.show(container, "1");
-
-			}
-		});
+		
 		
 		//Welcome Page
 		JLabel welcome = new JLabel("Welcome, ");

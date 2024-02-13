@@ -17,6 +17,7 @@ public class Session {
 		while(memberRs.next()) {
 			returnedPass = memberRs.getString("password");
 		}
+		
 		return (returnedPass.equals(password));
 	}
 	

@@ -10,15 +10,15 @@ import java.sql.Connection;
 
 public class Register {
 	
-	public static void registerUser(Connection conn, Student x)throws SQLException {
+	public static void registerUser(Connection conn, Student student)throws SQLException {
 		
 		String sql = "INSERT INTO Students (first_name, last_name, email_address, password) VALUES (?, ?, ?, ?)";
 		
 		PreparedStatement preparedStatement = conn.prepareStatement(sql);
-		preparedStatement.setString(1, x.getFirstName());
-		preparedStatement.setString(2, x.getlastName());
-		preparedStatement.setString(3, x.getEmail());
-		preparedStatement.setString(4, x.getPassword());
+		preparedStatement.setString(1, student.getFirstName());
+		preparedStatement.setString(2, student.getlastName());
+		preparedStatement.setString(3, student.getEmail());
+		preparedStatement.setString(4, student.getPassword());
 		
 		preparedStatement.executeUpdate();
 		  		

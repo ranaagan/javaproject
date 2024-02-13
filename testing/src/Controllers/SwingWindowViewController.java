@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -14,29 +15,49 @@ import Utilities.Session;
 import Views.SwingWindow;
 
 public class SwingWindowViewController {
-	String username;
-	String password;
-	String firstName;
-	String lastName;
+	JTextField registrationFirstNameTextField;
+	JTextField registrationLastNameTextField;
 	static Connection connection = ConnectionFactory.getConnection();
 	JTextField userNameTextField;
 	JPasswordField passWordField;
 	JButton loginButton;
+	JButton goToRegistrationPageButton;
 	JButton registerButton;
-	
+	JButton backToLogin;
+	CardLayout cardLayout;
+	JPanel container;
+	JPanel loginPanel;
+	JPanel registerPanel;
+	JPanel welcomePage;
 	Student currentStudent;
+
 	
 	public SwingWindowViewController(SwingWindow window) {
 		window.createWindow();
+		registrationFirstNameTextField = window.registrationFirstNameTextField;
+		registrationLastNameTextField = window.registrationLastNameTextField;
 		userNameTextField = window.userNameTextField;
 		passWordField = window.passWordField;
 		loginButton = window.loginButton;
-		registerButton = window.registerNewButton;
+		goToRegistrationPageButton = window.goToRegistrationPageButton;
+		cardLayout = window.cardLayout;
+		container = window.container;
+		loginPanel = window.loginPanel;
+		registerPanel = window.registerPanel;
+		welcomePage = window.welcomePage;
+		registerButton = window.registerButton;
+		backToLogin = window.backToLogin;
+		
 		currentStudent = new Student();
+		addLoginHandler();
+		addGoToRegsitrationButtonHandler();
+		addRegisterButtonHandler();
+		addBackToLoginButtonHandler();
+		
 		
 	}
 	
-	public void loginHandler() {
+	public void addLoginHandler() {
 		loginButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e) {
@@ -44,53 +65,62 @@ public class SwingWindowViewController {
 				currentStudent.setPassword(new String(passWordField.getPassword()));
 				
 				try{
-					Session.authenticateUser(connection, currentStudent.getEmail(), currentStudent.getPassword());
+					boolean isAuthenticateSuccessful = Session.authenticateUser(connection, currentStudent.getEmail(), currentStudent.getPassword());
+					if (isAuthenticateSuccessful == true) {
+						Session.setSessionFields(connection, null, currentStudent);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Error: Failure logging in");
+					}
 				}catch(Exception ex) {
-					
+					System.out.println("invalid");
 				}	
-				
-			//	cl.show(container, "3");
+				cardLayout.show(container, "3");
 			}
-
 		});		
-
-		
 	}
 	
-		
-	
-	/*public void authenticate(String userName, String password) {
-		try {
-			if (Session.authenticateUser(connection, userName, password)) {
-				Student currentStudent = new Student();
-				Session.setSessionFields(connection, userName, currentStudent);
-				System.out.println("success");
-			} 
-			else System.out.println("Invalid Credentials");
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-	}
-	//why do we need this below method and cant call authenticate above directly from the SwignWindow instead? seems repetitive?
-	public void receiveStudentInfo(String username, String password) {
-		this.username = username;
-		this.password = password;
-		authenticate(username, password);
-			
-	}
-	
-	public void registerStudent(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		Student currentStudent = new Student(firstName, lastName);
-		try {
-			Register.registerUser(connection, currentStudent);
-			this.password = currentStudent.getPassword();
-			
-		}catch (SQLException e1) {
-				e1.printStackTrace();
+	public void addGoToRegsitrationButtonHandler() {
+		goToRegistrationPageButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(container, "2");
 			}
-		}*/
+			});
+		
+	}
+	
+	public void addRegisterButtonHandler() {
+		
+		registerButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				Student newstudent = new Student(registrationFirstNameTextField.getText(), registrationLastNameTextField.getText());
+			
+				try {
+					Register.registerUser(connection, newstudent);
+					JOptionPane.showMessageDialog(null, "Success, your password is: " + newstudent.getPassword() );
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error: Failure registering student!");
+				}
+				
+			}
+
+			
+		});
+	}
+	
+	public void addBackToLoginButtonHandler() {
+		backToLogin.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed (ActionEvent e) {
+				cardLayout.show(container, "1");
+
+			}
+		});
+	}
+	
 }
 	
 	
