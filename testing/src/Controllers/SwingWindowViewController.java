@@ -43,6 +43,11 @@ public class SwingWindowViewController {
 				currentStudent.setEmail(userNameTextField.getText());
 				currentStudent.setPassword(new String(passWordField.getPassword()));
 				
+				try{
+					Session.authenticateUser(connection, currentStudent.getEmail(), currentStudent.getPassword());
+				}catch(Exception ex) {
+					
+				}	
 				
 			//	cl.show(container, "3");
 			}

@@ -87,7 +87,8 @@ public class SwingWindow {
 		
 		loginButton = new JButton("Login");
 		loginPanel.add(loginButton);
-				
+			
+		//do we delete this since we have it in teh controller? or do we call loginHandler??
 		loginButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed (ActionEvent e) {
