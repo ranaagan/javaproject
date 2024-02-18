@@ -30,12 +30,15 @@ public class SwingWindow {
 	JLabel registrationLastNameLabel;
 	public JTextField registrationLastNameTextField;
 	public JButton registerButton;
-	public JButton backToLogin;
+	public JButton backToLoginButton;
+	
+	public JButton viewMyCoursesButton;
+	public JButton viewAllCoursesButton;
 	
 	public JPanel container = new JPanel();
 	public JPanel loginPanel = new JPanel();
 	public JPanel registerPanel = new JPanel();
-	public JPanel welcomePage = new JPanel();
+	public JPanel welcomePanel = new JPanel();
 	public CardLayout cardLayout = new CardLayout();
 
 	public void createWindow() {
@@ -43,21 +46,21 @@ public class SwingWindow {
 		j.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		j.setSize(800, 200);
 		j.setLocationRelativeTo(null);
-		//j.setLayout(new FlowLayout());
-		
+			
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-				
+		
+		//containers/panels for each page
 		container.setLayout(cardLayout);
 		container.add(loginPanel, "1");
 		container.add(registerPanel, "2");
-		container.add(welcomePage, "3");
+		container.add(welcomePanel, "3");
 		cardLayout.show(container, "1");
 		
-		//Login Screen
+		//Login Panel
 		userNameLabel = new JLabel("Username");
 		loginPanel.add(userNameLabel);
 		userNameTextField = new JTextField(20);
@@ -73,11 +76,9 @@ public class SwingWindow {
 			
 					
 		goToRegistrationPageButton = new JButton("Register as a New User");
-		loginPanel.add(goToRegistrationPageButton);
-		
-		
+		loginPanel.add(goToRegistrationPageButton);	
 
-		// Registration as new Screen
+		// Registration Panel
 		registrationFirstNameLabel = new JLabel("First Name");
 		registerPanel.add(registrationFirstNameLabel);
 		registrationFirstNameTextField = new JTextField(20);
@@ -91,13 +92,16 @@ public class SwingWindow {
 		registerButton = new JButton("Register New User");
 		registerPanel.add(registerButton);
 			
-		backToLogin = new JButton("Back to Login");
-		registerPanel.add(backToLogin);
+		backToLoginButton = new JButton("Back to Login");
+		registerPanel.add(backToLoginButton);
 		
 		
 		//Welcome Page
 		JLabel welcome = new JLabel("Welcome, ");
-		welcomePage.add(welcome);
+		welcomePanel.add(welcome);
+		viewMyCoursesButton = new JButton("View My Courses");
+		viewAllCoursesButton = new JButton("View All Courses");
+		welcomePanel.add(viewMyCoursesButton);
 		
 		
 		j.add(container);
